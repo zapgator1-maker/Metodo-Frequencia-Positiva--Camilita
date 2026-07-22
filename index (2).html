@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Camila Bichler — Método Frecuencia Positiva</title>
+<style>
+  :root {
+    --gold: #e8c77e;
+    --gold-deep: #b8863a;
+    --bg: #0c0f0a;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: var(--bg);
+    overflow: hidden;
+  }
+
+  .stage {
+    position: relative;
+    width: 100vw;
+    height: 100dvh;
+    background: var(--bg);
+  }
+
+  video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .fade-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 32%;
+    background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%);
+    pointer-events: none;
+  }
+
+  .sound-hint {
+    position: absolute;
+    top: max(18px, env(safe-area-inset-top));
+    right: 18px;
+    padding: 8px 14px;
+    font: 13px/1 system-ui, sans-serif;
+    color: var(--gold);
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(232,199,126,0.4);
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+    pointer-events: none;
+    opacity: 0.9;
+    transition: opacity 0.4s ease;
+  }
+
+  .sound-hint.hidden { opacity: 0; }
+
+  .cta-wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: max(48px, env(safe-area-inset-bottom) + 32px);
+    display: flex;
+    justify-content: center;
+  }
+
+  .cta {
+    font-family: Georgia, 'Playfair Display', serif;
+    font-size: 19px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #241705;
+    text-decoration: none;
+    background: linear-gradient(180deg, #f5dfa0, var(--gold-deep));
+    padding: 16px 46px;
+    border-radius: 999px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .cta:hover,
+  .cta:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.6);
+  }
+
+  .cta:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .cta:active { transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    video { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="stage">
+    <video
+      id="vid"
+      src="Camila_Bichler.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      webkit-playsinline
+    ></video>
+
+    <div class="fade-bottom"></div>
+
+    <div class="sound-hint" id="soundHint">Toca la pantalla para el sonido 🔊</div>
+
+    <div class="cta-wrap">
+      <a class="cta" href="https://forms.gle/FkSsVMxCQJm3ReAG8" target="_blank" rel="noopener">
+        Formulario
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const vid = document.getElementById('vid');
+    const hint = document.getElementById('soundHint');
+
+    vid.addEventListener('click', () => {
+      vid.muted = !vid.muted;
+      hint.classList.add('hidden');
+    });
+
+    setTimeout(() => hint.classList.add('hidden'), 5000);
+  </script>
+
+</body>
+</html>
